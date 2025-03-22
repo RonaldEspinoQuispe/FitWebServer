@@ -149,15 +149,17 @@ const datos_ejercicios = mongoose.model("datos_ejercicios", ejercicioSchema);
 // Ruta para obtener ejercicios por grupo muscular
 app.get("/api/exercises", async (req, res) => {
     const { muscleGroup } = req.query;
-
+    console.log('Consultando ejercicios para el grupo muscular:', muscleGroup); // Log de depuración
     if (!muscleGroup) {
         return res.status(400).json({ error: "Grupo muscular no proporcionado" });
     }
 
     try {
         const exercises = await datos_ejercicios.find({ muscleGroup });
+        console.log('Resultados de la consulta:', exercises); // Log de depuración
         res.json(exercises);
     } catch (error) {
+        console.error('Error en la consulta:', err); // Log de depuración
         res.status(500).json({ error: "Error al obtener los ejercicios" });
     }
 });

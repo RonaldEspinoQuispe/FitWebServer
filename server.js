@@ -2,19 +2,22 @@ const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const cors = require("cors");
+require('dotenv').config(); // Cargar variables de entorno desde .env
 
 const app = express();
-const PORT = 5000;
+const PORT = process.env.PORT || 3000;
 
 // Middleware
 app.use(cors());
 app.use(bodyParser.json());
 
 // Conectar a MongoDB
-mongoose.connect("mongodb+srv://ronald24espino:<db_password>@clusterfit.r714m.mongodb.net/?retryWrites=true&w=majority&appName=ClusterFit", {
+mongoose.connect(process.env.MONGO_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-});
+})
+.then(() => console.log('Conectado a MongoDB Atlas'))
+.catch(err => console.error('Error conectando a MongoDB Atlas:', err));
 
 // Definir el esquema de los ejercicios
 const ejercicioSchema = new mongoose.Schema({

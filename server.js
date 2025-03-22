@@ -44,6 +44,11 @@ const ejercicioSchema = new mongoose.Schema({
     ],
 });
 
+const tableEjercicioSchema = new mongoose.Schema({
+    muscleGroup: String,
+    exercise: String
+});
+
 const Ejercicio = mongoose.model("Ejercicio", ejercicioSchema);
 
 // Rutas CRUD
@@ -144,7 +149,7 @@ app.delete("/ejercicios", async (req, res) => {
     }
 });
 
-const datos_ejercicios = mongoose.model("datos_ejercicios", ejercicioSchema);
+const datos_ejercicios = mongoose.model("datos_ejercicios", tableEjercicioSchema);
 
 // Ruta para obtener ejercicios por grupo muscular
 app.get("/api/exercises", async (req, res) => {

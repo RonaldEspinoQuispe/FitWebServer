@@ -11,7 +11,7 @@ app.use(cors());
 app.use(bodyParser.json());
 
 // Conectar a MongoDB
-mongoose.connect("mongodb://localhost:27017/ejercicioDB", {
+mongoose.connect("mongodb+srv://ronald24espino:<db_password>@clusterfit.r714m.mongodb.net/?retryWrites=true&w=majority&appName=ClusterFit", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 });
